@@ -3,21 +3,12 @@ import { useEffect } from "react";
 const Console = () => {
 
     const toggleConsole = (console:HTMLElement): void => {
-        console!.classList.toggle("open");
+        console.classList.toggle("open");
     }
 
-    // function submitLine() {
-
-    // }
-
-    const clearLine = (terminal:HTMLInputElement) => {
-        terminal!.value = "";
-    }
-
-    const clearDisplay = (display:HTMLElement) => {
-        display!.innerHTML = "";
-    }
-
+    // const submitLine = () => "";
+    const clearLine = (terminal:HTMLInputElement) => terminal.value = "";
+    const clearDisplay = (display:HTMLElement) => display.innerHTML = "";
     const handleKeyDown = (e:KeyboardEvent) => {
         const siteConsole = document.getElementById("console") as HTMLElement;
         const siteDisplay = document.getElementById("display") as HTMLElement;
