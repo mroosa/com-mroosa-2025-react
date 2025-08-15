@@ -1,6 +1,6 @@
 // import { useState } from 'react'
 
-import Console from './components/Console';
+import Console from './components/console/Console';
 import Header from './components/Header';
 import Sections from './components/Sections';
 
@@ -17,4 +17,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;

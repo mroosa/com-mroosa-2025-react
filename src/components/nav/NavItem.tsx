@@ -12,6 +12,9 @@ interface NavItemProps {
 }
 
 function NavItem({url, name, content, className, id, target, key}: NavItemProps) {
+    if (className && className === "spacer") {
+        return <li className={className} key={key}></li>
+    }
     return (
         <li className={className} key={key}>
             <a id={id} href={url} title={name} target={target}>{content||name}</a>

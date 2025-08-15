@@ -1045,9 +1045,9 @@ section img {
 .project .project-nfo .media {
   grid-area: main;
 }
-.project input:checked + label {
-  /* 90 degree title */
-}
+/* .project input:checked + label {
+  // 90 degree title
+} */
 .project input:checked + label .proj-ttl {
   color: #ffffff;
 }
