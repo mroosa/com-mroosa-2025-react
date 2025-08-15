@@ -63,7 +63,8 @@ const ContactForm = ({id, method, action}:ContactFormProps) => {
     
 
     return (
-        <form id={id} method={method} action={action}>
+        <form id={id} name={id} method={method} action={action}>
+            <Input type="hidden" name={id} value="contact-form" />
             <Input labeledBy="Name" type="text" required={true} />
             <Input labeledBy="Email" type="email" required={true} />
             <Input labeledBy="Message" type="textarea" required={true} />

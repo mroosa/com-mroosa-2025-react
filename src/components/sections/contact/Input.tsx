@@ -1,5 +1,6 @@
 import { type ReactElement } from "react";
 import InputField, {type InputProps} from "./InputField";
+import styles from "./Input.module.css"
 
 
 
@@ -28,7 +29,7 @@ const Input = (props:InputProps) => {
     }
 
     return (
-        <div className={wrapperClasses}>
+        <div className={(type!=="hidden") ? wrapperClasses : styles.hidden}>
             <Label />
             <InputField 
                 name={newName}
