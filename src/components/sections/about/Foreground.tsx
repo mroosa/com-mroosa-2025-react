@@ -1,13 +1,29 @@
-import Brick from "./Brick";
+import { useEffect } from "react";
+import Brick, { hitBlock } from "./Brick";
 import Platform from "./Platform";
 
-const Foreground = () => {
+const Foreground = ({brickCallback}: {brickCallback: CallableFunction}) => {
+    
+    const handleBrickClick = (e: Event) => {
+        e.preventDefault();
+        hitBlock(e.target as HTMLElement, brickCallback);
+    }
+
+    useEffect(() => {
+        window.addEventListener('click',handleBrickClick);
+        return () => {
+            window.removeEventListener('click', handleBrickClick);
+        }
+    },[]);
+
+
+
     return (
         <div className="contain" role="presentation">
             <h2>
                 <Brick letter="A" />
                 <Brick letter="B" />
-                <Brick letter="O" className="special" />
+                <Brick letter="O" special />
                 <Brick letter="U" />
                 <Brick letter="T" />
             </h2>

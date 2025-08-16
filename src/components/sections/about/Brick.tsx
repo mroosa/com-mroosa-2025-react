@@ -1,12 +1,49 @@
-interface BrickProps {
-    className?: string,
-    letter: string
+
+const maxHits = 6; // for "special" blocks
+
+export const hitBlock = (b: HTMLElement, callback:CallableFunction) => {
+    // get num of hits on block
+    let blockHits: number = typeof(b.getAttribute('data-hits')) !== "undefined" ? Number(b.getAttribute('data-hits')) : 0;
+    // check for state change
+    if (blockHits <= maxHits) {
+        // add animation
+        b.classList.add("brick-hit");
+        setTimeout(() => {
+            b.classList.remove("brick-hit");
+        }, 250);
+
+        // only count hits for "special" blocks
+        if (b.classList.contains("special")) {
+            const star = document.createElement('span');
+            b.append(star);
+            star.classList.add('star');
+            setTimeout(() => {
+                star.remove();
+            }, 1000);
+            if (blockHits == maxHits) {
+                b.classList.add("spent");
+                setTimeout(() => {
+                    callback();
+                }, 250);                
+            }
+            blockHits++;
+            b.setAttribute("data-hits", blockHits.toString());
+        }
+    }
 }
 
-const Brick = ({ className, letter }: BrickProps) => {
+interface BrickProps {
+    letter: string,
+    special?: boolean
+}
+
+const Brick = ({ letter, special }: BrickProps) => {
+
+    
+
     let classes = "brick";
-    if (className) {
-        classes += " " + className;
+    if (special) {
+        classes += " special";
     }
 
     return (
