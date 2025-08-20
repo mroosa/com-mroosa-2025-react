@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import Project from "./Project";
+import Project, { type ProjectObj } from "./Project";
 import * as Data from '../../../assets/projects.json';
+// import { type ProjectObj } from "./Project";
 
 const Projects = () => {
-    const projectsData = Data.projects
+    const projectsData: ProjectObj[] = Data.projects
 
     useEffect(() => {
     }, [])
@@ -12,7 +13,12 @@ const Projects = () => {
     return (
         <div className="projects" role="presentation">
             {projectsData.map((project, key) => (
-                <Project key={key} count={key} project={project} defaultChecked={(key===0)} hide={project.hide} />
+                <Project
+                    key={key}
+                    count={key}
+                    project={project}
+                    defaultChecked={(key===0)}
+                />
             ))}
         </div>
     )

@@ -18,46 +18,50 @@ export interface MediaItem {
 }
 
 interface MediaProps {
-    dir: string,
-    content: MediaItem[]
+    dir: string | undefined,
+    content: MediaItem[] | undefined
 }
 
-const Media = ({dir, content}: MediaProps) => {
+const Media = ({dir = "", content}: MediaProps) => {
 
-    const numMedia = content.length;
+    if (content) {
+        const numMedia = content.length;
 
-    const Item = ({item}:{item:MediaItem}):ReactElement => {
-        const frame = `frame ${item.type}`
-        let internals = null;
-        switch (item.type) {
-            case "video":
-                internals = <Video dir={dir} item={item} />
-                break;
-            case "image":
-                internals = <Image dir={dir} item={item} />
-                break;
-            case "compare":
-                internals = <Compare dir={dir} item={item} />
-                break;
-            case "vimeo":
-                internals = <Vimeo item={item} />
-                break;
+        // Create React Element to handle switch case
+        const Item = ({item}:{item:MediaItem}):ReactElement => {
+            const frame = `frame ${item.type}`;
+            let internals = null;
+            switch (item.type) {
+                case "video":
+                    internals = <Video dir={dir} item={item} />
+                    break;
+                case "image":
+                    internals = <Image dir={dir} item={item} />
+                    break;
+                case "compare":
+                    internals = <Compare dir={dir} item={item} />
+                    break;
+                case "vimeo":
+                    internals = <Vimeo item={item} />
+                    break;
+            }
+            return (
+                <div className={frame} role="presentation">
+                    {internals}
+                </div>
+            )
         }
+
         return (
-            <div className={frame} role="presentation">
-                {internals}
-            </div>
+            <div className="media carousel" data-slides={numMedia} role="presentation"><div className="film" role="presentation">
+            
+                {content.map((item:MediaItem, key:number) => (
+                    <Item key={key} item={item} />
+                ))}
+            
+            </div></div>
         )
     }
-
-    return (
-        <div className="media carousel" data-slides={numMedia} role="presentation"><div className="film" role="presentation">
-        
-            {content.map((item:MediaItem, key:number) => (
-                <Item key={key} item={item} />
-            ))}
-        
-        </div></div>
-    )
+    return null
 }
 export default Media;

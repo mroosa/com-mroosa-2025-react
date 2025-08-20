@@ -3,30 +3,30 @@ import ProjectLinks, { type ProjectLinkType as ProjectLink } from "./ProjectLink
 import Tags from "./Tags";
 import Media, { type MediaItem } from "./Media";
 
-interface ProjectObj {
+export interface ProjectObj {
     id: string,
-    dir: string,
+    dir?: string,
     title: string,
     description: string,
-    links: ProjectLink[],
-    tags: string[],
-    awards: string[],
-    media: MediaItem[]
+    links?: ProjectLink[],
+    tags?: string[],
+    awards?: string[],
+    media?: MediaItem[],
+    hide?: boolean
 }
 
 interface ProjectProps {
     project: ProjectObj,
     count: number,
-    defaultChecked: boolean,
-    hide?: boolean
+    defaultChecked: boolean
 }
 
-const Project = ({project, count, defaultChecked, hide}: ProjectProps) => {
+const Project = ({project, count, defaultChecked}: ProjectProps) => {
 
     const projNum = (count+1 < 10) ? `0${count+1}` : count+1;
     const [checked, setChecked] = useState(defaultChecked);
 
-    if (!hide) {
+    if (!project.hide) {
         return (
             <div className="project" role="presentation">
                 <input type="radio" id={project.id} name="project" defaultChecked={defaultChecked} onChange={() => setChecked(!checked)} />
@@ -34,7 +34,6 @@ const Project = ({project, count, defaultChecked, hide}: ProjectProps) => {
                 <h3><span className="proj-num">{projNum}</span><span className="proj-ttl"><span className="dots">::</span><span className="ttl">{project.title}</span></span></h3>
                 </label>
                 <div className="project-nfo" role="presentation">
-
                     <ProjectLinks links={project.links} />
                     <Tags awards={project.awards} tags={project.tags} />
                     <Media dir={project.dir} content={project.media} />
