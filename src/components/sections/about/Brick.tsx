@@ -34,10 +34,11 @@ export const hitBlock = (b: HTMLElement, callback:CallableFunction) => {
 
 interface BrickProps {
     letter: string,
+    handleClick: any,
     special?: boolean
 }
 
-const Brick = ({ letter, special }: BrickProps) => {
+const Brick = ({ letter, handleClick, special }: BrickProps) => {
 
     
 
@@ -47,7 +48,7 @@ const Brick = ({ letter, special }: BrickProps) => {
     }
 
     return (
-        <span className={classes} role="presentation">{letter}</span>
+        <span className={classes} role="presentation" onClick={handleClick}>{letter}</span>
     )
 }
 
