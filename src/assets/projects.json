@@ -132,9 +132,9 @@
                 {
                     "type": "image",
                     "content": [
-					{
-						"src": "comcast--brand-hub--wordpress.png",
-						"alt": "Comcast Brand Hub"
+                        {
+                            "src": "comcast--brand-hub--wordpress.png",
+                            "alt": "Comcast Brand Hub"
 						}
 					],
                     "disableShadow": true
@@ -156,9 +156,9 @@
                 {
                     "type": "image",
                     "content": [
-					{
-						"src": "cmi-promex--device-lockup.png",
-						"alt": "CMI-Promex website on various devices"
+                        {
+                            "src": "cmi-promex--device-lockup.png",
+                            "alt": "CMI-Promex website on various devices"
 						}
 					],
                     "disableShadow": true

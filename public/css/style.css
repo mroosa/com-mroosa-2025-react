@@ -1040,6 +1040,9 @@ section img {
     margin-left: 30px;
   }
 }
+.project .project-nfo .project-links {
+  display: none;
+}
 .project .project-nfo .tags,
 .project .project-nfo .project-dsc {
   padding: 0 20px;

@@ -1,22 +1,21 @@
 import { useState } from "react";
+import ProjectLinks, { type ProjectLinkType as ProjectLink } from "./ProjectLinks";
 import Tags from "./Tags";
 import Media, { type MediaItem } from "./Media";
 
+interface ProjectObj {
+    id: string,
+    dir: string,
+    title: string,
+    description: string,
+    links: ProjectLink[],
+    tags: string[],
+    awards: string[],
+    media: MediaItem[]
+}
+
 interface ProjectProps {
-    project: {
-        id: string,
-        dir: string,
-        title: string,
-        description: string,
-        links: {
-            type: string,
-            url: string,
-            title: string
-        },
-        tags: string[],
-        awards: string[],
-        media: MediaItem[]
-    },
+    project: ProjectObj,
     count: number,
     defaultChecked: boolean,
     hide?: boolean
@@ -36,7 +35,8 @@ const Project = ({project, count, defaultChecked, hide}: ProjectProps) => {
                 </label>
                 <div className="project-nfo" role="presentation">
 
-                    {(project.awards || project.tags) && <Tags awards={project.awards} tags={project.tags} />}
+                    <ProjectLinks links={project.links} />
+                    <Tags awards={project.awards} tags={project.tags} />
                     <Media dir={project.dir} content={project.media} />
                     <div className="project-dsc" aria-label="Project Description"><p>{project.description}</p></div>
                 </div>
