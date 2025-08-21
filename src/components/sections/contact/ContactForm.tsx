@@ -46,11 +46,6 @@ import Input from './Input';
 // }
 
 
-
-
-
-
-
 interface ContactFormProps {
     id?: string,
     method?: 'get' | 'post',
@@ -61,7 +56,6 @@ const ContactForm = ({id, method, action}:ContactFormProps) => {
 
     // TODO: break out submit action from main js
     
-
     return (
         <form id={id} name={id} method={method} action={action}>
             <Input type="hidden" name={id} value="contact-form" />

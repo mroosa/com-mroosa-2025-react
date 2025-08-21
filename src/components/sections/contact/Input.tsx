@@ -28,8 +28,16 @@ const Input = (props:InputProps) => {
         }
     }
 
+    const handleFocus = (id:string, state:boolean) => {
+        if (state) {
+            document.querySelector(`[data-wrapper='${id}']`)?.classList.add("focused");
+        } else {
+            document.querySelector(`[data-wrapper='${id}']`)?.classList.remove("focused");
+        }
+    }
+
     return (
-        <div className={(type!=="hidden") ? wrapperClasses : styles.hidden}>
+        <div className={(type!=="hidden") ? wrapperClasses : styles.hidden} data-wrapper={newName}>
             <Label />
             <InputField 
                 name={newName}
@@ -38,6 +46,7 @@ const Input = (props:InputProps) => {
                 value={props.value||""}
                 placeholder={props.placeholder}
                 required={props.required}
+                handleFocus={handleFocus}
             />
         </div>
     )

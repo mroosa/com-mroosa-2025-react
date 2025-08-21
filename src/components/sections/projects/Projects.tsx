@@ -1,18 +1,17 @@
-import { useEffect } from "react";
 import Project, { type ProjectObj } from "./Project";
 import * as Data from '../../../assets/projects.json';
-// import { type ProjectObj } from "./Project";
+import { useEffect, useState } from "react";
 
 const Projects = () => {
-    const projectsData: ProjectObj[] = Data.projects
-
-    useEffect(() => {
-    }, [])
-
+    const [projects,setProjects] = useState(Data.projects);
+    
+    useEffect(()=> {
+        console.log(projects);
+    },[])
 
     return (
         <div className="projects" role="presentation">
-            {projectsData.map((project, key) => (
+            {projects.map((project, key) => (
                 <Project
                     key={key}
                     count={key}

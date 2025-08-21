@@ -23,7 +23,7 @@ interface ProjectProps {
 
 const Project = ({project, count, defaultChecked}: ProjectProps) => {
 
-    const projNum = (count+1 < 10) ? `0${count+1}` : count+1;
+    const projNum = (count < 10) ? `0${count}` : count;
     const [checked, setChecked] = useState(defaultChecked);
 
     if (!project.hide) {
