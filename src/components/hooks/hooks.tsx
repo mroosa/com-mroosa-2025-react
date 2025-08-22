@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 
+/**
+ * Hook to implement mouse-based background movement with useEffect
+ * @returns {midPos, backPos}
+ */
 export const movingBackgrounds = () => {
     // Set values for moving backgrounds
     const [origX, setOrigX] = useState(0);

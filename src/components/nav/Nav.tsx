@@ -1,4 +1,17 @@
+import { type MouseEvent } from 'react';
 import NavItem from './NavItem';
+
+// Function to toggle menu based on generic body class
+export const toggleMenu = (force?: string) => {
+    if (force === 'open') {
+        document.body.classList.add('menu-open');
+    } else if (force === 'close') {
+        console.log(force);
+        document.body.classList.remove('menu-open');
+    } else {
+        document.body.classList.toggle('menu-open');
+    }
+}
 
 function Nav() {
 
@@ -30,9 +43,20 @@ function Nav() {
         </svg>
     );
 
+    const MenuButton = () => {
+        return (
+            <button id="menu-toggle" onClick={handleMenuClick}><em>Toggle Menu</em><span></span><span></span><span></span></button>
+        )
+    }
+
+    const handleMenuClick = (e:MouseEvent<HTMLElement>) => {
+        toggleMenu();
+        e.preventDefault();
+    }
+
     return (
         <nav>
-            <button id="menu-toggle"><em>Toggle Menu</em><span></span><span></span><span></span></button>
+            <MenuButton />
             <ul id="menu" role="presentation">
                 <NavItem url="#about" name="About" />
                 <NavItem url="#work" name="Work" />
