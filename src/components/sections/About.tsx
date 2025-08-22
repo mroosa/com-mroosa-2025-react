@@ -4,16 +4,12 @@ import Background from "./about/Background";
 
 let isAnimating: boolean = false;
 
-interface AboutProps {
-    midPos:number,
-    backPos:number
-}
-
-const About = ({midPos, backPos}:AboutProps) => {
+const About = () => {
     
     const [scene, setScene] = useState(1);
     let bonus = false;
 
+    // TODO: Make a hook for possibly more scenes
     const ee = (): void => {
         document.getElementById("about")?.classList.add("space");
         
@@ -35,7 +31,7 @@ const About = ({midPos, backPos}:AboutProps) => {
     return (
         <section id="about" data-current-scene={scene}>
             <Foreground brickCallback={ee}/>            
-            <Background midPos={midPos} backPos={backPos}/>
+            <Background />
         </section>
     )
 }
