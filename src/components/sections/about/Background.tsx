@@ -1,6 +1,14 @@
-const Background = () => {
+interface BackgroundProps {
+    midPos: number,
+    backPos: number
+}
+
+const Background = ({midPos, backPos}:BackgroundProps) => {
+
+    const backgroundPos = `${midPos}px 95%, ${backPos}px 100%`;
+
     return (
-        <div className="monitor" role="presentation">
+        <div className="monitor" style={{backgroundPosition:backgroundPos}} role="presentation">
             <img className="asset" id="cloud" data-type="sprite" src="images/about/cloud_sprite.png" alt=""/>
             <img className="asset" id="playerSprite" data-type="sprite" src="images/about/LEGO-sprite.png" alt=""/>
             <div className="shrub" role="presentation"></div>

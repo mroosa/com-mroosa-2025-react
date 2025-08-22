@@ -3,7 +3,7 @@ import { type MediaItem } from "../Media";
 const Compare = ({dir, item}:{dir:string, item:MediaItem}) => {
 
     const content_before = item.content[0];
-    const content_after = item.content[0];
+    const content_after = item.content[1];
     const contentURL_before = `/projects/${dir}/${content_before.src}`;
     const contentURL_after = `/projects/${dir}/${content_after.src}`;
     

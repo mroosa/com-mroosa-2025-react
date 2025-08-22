@@ -3,11 +3,13 @@ import * as Data from '../../../assets/projects.json';
 import { useEffect, useState } from "react";
 
 const Projects = () => {
+
+    // Use useState in case there is a need for filtering later
     const [projects,setProjects] = useState(Data.projects);
 
     // function to pull only the "visible" projects
     const removeHiddenProjects = async () => {
-        const updatedProjects = projects.filter(project=>{
+        const updatedProjects = projects.filter(project => {
             return !project.hide
         })
         setProjects(updatedProjects);
