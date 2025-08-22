@@ -1,4 +1,4 @@
-import { movingBackgrounds } from "../hooks/hooks";
+import { movingBackgrounds } from "../hooks";
 const Intro = () => {
 
     const {midPos, backPos} = movingBackgrounds();
