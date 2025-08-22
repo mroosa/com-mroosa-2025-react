@@ -1,10 +1,8 @@
-interface BackgroundProps {
-    midPos: number,
-    backPos: number
-}
+import { movingBackgrounds } from "../hooks/movingBackgrounds";
 
-const Background = ({midPos, backPos}:BackgroundProps) => {
+const Background = () => {
 
+    const {midPos, backPos} = movingBackgrounds();
     const backgroundPos = `${midPos}px 95%, ${backPos}px 100%`;
 
     return (

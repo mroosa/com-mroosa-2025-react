@@ -1,11 +1,8 @@
-import { useState, useEffect } from 'react';
+import { movingBackgrounds } from "./hooks/movingBackgrounds";
+const Intro = () => {
 
-interface IntroProps {
-    midPos: number,
-    backPos: number
-}
-const Intro = ({midPos, backPos}:IntroProps) => {
-
+    const {midPos, backPos} = movingBackgrounds();
+   
     const backgroundPos = `center, ${Math.floor(backPos)}px center, ${Math.floor(midPos * 2) + 300}px top, ${Math.floor(backPos * 2)}px center, center`;
 
     return (
