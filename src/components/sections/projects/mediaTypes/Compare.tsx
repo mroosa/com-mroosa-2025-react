@@ -1,4 +1,7 @@
-import { useEffect, useRef, useState, type DragEvent, type MouseEvent } from "react";
+import { useEffect, useRef, useState} from "react";
+// React's MouseEvent throws errors in TS for non-components
+// such as window, so renamed to use both
+import { type MouseEvent as ReactMouseEvent } from "react";
 import { type MediaItem } from "../Media";
 
 const Compare = ({dir, item}:{dir:string, item:MediaItem}) => {
@@ -12,7 +15,7 @@ const Compare = ({dir, item}:{dir:string, item:MediaItem}) => {
     const beforeFrame = useRef(null);
     const container = useRef(null);
 
-    const dragMouseDown = (e:MouseEvent<HTMLElement>) => {
+    const dragMouseDown = (e:ReactMouseEvent<HTMLElement>) => {
         e.preventDefault();
         if (container.current) {
             const dragContainer:HTMLElement = container!.current;
@@ -30,8 +33,8 @@ const Compare = ({dir, item}:{dir:string, item:MediaItem}) => {
         window.removeEventListener("mouseup", stopDragging);
     }
 
-    // TODO: Figure out proper TS Event (MouseEvent thorws overload error)
-    const dragElement = (e: any) => {
+    // TODO: Figure out proper TS Event (MouseEvent throws overload error)
+    const dragElement = (e: MouseEvent) => {
         const diff = (e.clientX - gripOffsetX) - containerBounds!.left;
         const rightEdge = containerBounds!.right - containerBounds!.left;
         if (diff > -1 && diff < rightEdge) {
