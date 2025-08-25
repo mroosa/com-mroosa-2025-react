@@ -18,7 +18,7 @@ const Compare = ({dir, item}:{dir:string, item:MediaItem}) => {
     const dragMouseDown = (e:ReactMouseEvent<HTMLElement>) => {
         e.preventDefault();
         if (container.current) {
-            const dragContainer:HTMLElement = container!.current;
+            const dragContainer:HTMLElement = container.current;
             setContainerBounds(dragContainer.getBoundingClientRect());
         }
         if (isBeingDragged.current) {

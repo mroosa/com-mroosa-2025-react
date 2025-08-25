@@ -1,6 +1,6 @@
-import type { ReactElement } from "react";
+import { useRef, type ReactElement } from "react";
 import { Video, Image, Vimeo, Compare } from "./mediaTypes";
-
+import CarouselNav from "./CarouselNav";
 
 export interface MediaItem {
     type: string,
@@ -19,13 +19,23 @@ export interface MediaItem {
 
 interface MediaProps {
     dir: string | undefined,
-    content: MediaItem[] | undefined
+    mediaItems: MediaItem[] | undefined
 }
 
-const Media = ({dir = "", content}: MediaProps) => {
+const Media = ({dir = "", mediaItems}: MediaProps) => {
 
-    if (content) {
-        const numMedia = content.length;
+    const activeMedia = useRef(0);
+    const filmstrip = useRef<HTMLDivElement>(null);
+
+    const handleClick = (dot:number) => {
+        // setActiveMedia(dot);
+        activeMedia.current = dot;
+        const percentage = (dot != 0) ? -dot * 100 : 0;
+        filmstrip.current!.style.left = `${percentage}%`;
+    }
+
+    if (mediaItems) {
+        const numMedia = mediaItems.length;
 
         // Create React Element to handle switch case
         const Item = ({item}:{item:MediaItem}):ReactElement => {
@@ -53,13 +63,14 @@ const Media = ({dir = "", content}: MediaProps) => {
         }
 
         return (
-            <div className="media carousel" data-slides={numMedia} role="presentation"><div className="film" role="presentation">
-            
-                {content.map((item:MediaItem, key:number) => (
-                    <Item key={key} item={item} />
-                ))}
-            
-            </div></div>
+            <div className="media carousel" data-slides={numMedia} role="presentation">
+                <div className="film" ref={filmstrip} role="presentation">
+                    {mediaItems.map((item:MediaItem, key) => (
+                        <Item key={key} item={item} />
+                    ))}
+                </div>
+                <CarouselNav defaultDot={activeMedia.current} mediaItems={mediaItems} numMedia={numMedia} handleClick={handleClick} />
+            </div>
         )
     }
     return null

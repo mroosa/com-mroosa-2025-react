@@ -36,7 +36,7 @@ const Project = ({project, count, defaultChecked}: ProjectProps) => {
                 <div className="project-nfo" role="presentation">
                     <ProjectLinks links={project.links} />
                     <Tags awards={project.awards} tags={project.tags} />
-                    <Media dir={project.dir} content={project.media} />
+                    <Media dir={project.dir} mediaItems={project.media} />
                     <div className="project-dsc" aria-label="Project Description"><p>{project.description}</p></div>
                 </div>
             </div>
